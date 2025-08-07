@@ -25,7 +25,7 @@ import TaskList from '~/components/TaskList.vue'
 import Timer from '~/components/Timer/Timer.vue.vue'
 import PomodoroToggle from '~/components/PomodoroToggle.vue'
 import SettingsModal from '~/components/SettingsModal.vue'
-import type { TimerSettings,TimerSession } from '~/types/timer'
+import type { TimerSession } from '~/types/timer'
 import type { Task } from '~/types/tasks'
 import { useTimerSettings } from '~/composables/useTimerSettings'
 
