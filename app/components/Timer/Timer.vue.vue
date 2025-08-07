@@ -1,14 +1,15 @@
 <template>
   <div>
-    <div><ManualTimer/></div>
+    <div><ManualTimer :settings="props.settings" :initialState="timerState"/></div>
     <div><PomodoroTimer/></div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import type { Task } from '~/types/tasks';
 import ManualTimer from './ManualTimer.vue';
 import PomodoroTimer from './PomodoroTimer.vue';
-import type { TimerState } from '~/types/timer'
+import type { TimerState,TimerSettings, TimerMode } from '~/types/timer'
 
 
 const timerState = ref<TimerState>({
@@ -21,20 +22,12 @@ const timerState = ref<TimerState>({
     currentTaskId: null,
   })
 
-defineProps({
-  task: {
-    type: Object,
-    required: false,
-  },
-  mode: {
-    type: String,
-    default: 'manual',
-  },
-  settings: {
-    type: Object,
-    required: true,
-  },
-})
+const props = defineProps<{
+  task: Task
+  mode: TimerMode
+  settings: TimerSettings
+}>()
+
 </script>
 
 <style>
