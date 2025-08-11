@@ -13,7 +13,6 @@ export interface TimerState {
 }
 
 export interface TimerSettings {
-    mode: TimerMode
     workDuration: number
     shortBreakDuration: number
     longBreakDuration: number

@@ -7,14 +7,10 @@
     <Timer
       :task="selectedTask"
       :mode="mode"
-      :settings="timerSettings"
       @sessionComplete="saveSession"
     />
 
-    <SettingsModal
-      v-model:show="showSettings"
-      v-model:settings="timerSettings"
-    />
+
   </div>
 </template>
 
@@ -24,17 +20,14 @@ import TaskInput from '~/components/TaskInput.vue'
 import TaskList from '~/components/TaskList.vue'
 import Timer from '~/components/Timer/Timer.vue.vue'
 import PomodoroToggle from '~/components/PomodoroToggle.vue'
-import SettingsModal from '~/components/SettingsModal.vue'
-import type { TimerSession } from '~/types/timer'
+import type { TimerSession,TimerMode } from '~/types/timer'
 import type { Task } from '~/types/tasks'
-import { useTimerSettings } from '~/composables/useTimerSettings'
 
-const timerSettings = useTimerSettings()
 
-const { mode } = timerSettings.value
+const mode = ref<TimerMode>('manual')
+
 const selectedTask = ref<Task>({ id: '', title: '', createdAt: '' })
 const tasks = ref<Task[]>([])
-const showSettings = ref(false)
 
 
 
