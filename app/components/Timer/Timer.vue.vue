@@ -2,6 +2,7 @@
   <div>
     <div><TimerCircle  :timerSettings="props.mode === 'manual' ? timerSettings : pomodoroSettings"
 /></div>
+//TODO: Butonlar burda olmali gibi
     <div>    
       <SettingsModal
       v-model:show="showSettings"
