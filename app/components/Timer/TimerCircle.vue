@@ -18,7 +18,7 @@
         stroke-width="7"
         fill="none"
         stroke-dasharray="283"
-        :stroke-dashoffset="(timeLeft / props.duration) * 283"
+        :stroke-dashoffset="(timeLeft / props.timerSettings.workDuration) * 283"
         stroke-linecap="round"
         transform="rotate(-90 50 50)"
       />
@@ -57,20 +57,18 @@
   </div>
 </template>
 
-<script setup>
-import { ref, computed, watch, onBeforeUnmount } from 'vue'
+<script setup lang="ts">
+import { ref, computed, onBeforeUnmount } from 'vue'
+import type { TimerSettings } from '~/types/timer'
 
-const props = defineProps({
-  duration: {
-    type: Number,
-    required: true,
-  }
-})
+const props = defineProps<{
+  timerSettings: TimerSettings
+}>()
 
 // Reactive state
-const timeLeft = ref(props.duration)
+const timeLeft = ref(props.timerSettings.workDuration)
 const isRunning = ref(false)
-let interval = null
+let interval: any| null = null
 
 // Computed time label
 const timeLabel = computed(() => {
@@ -100,7 +98,7 @@ function pause() {
 
 function reset() {
   pause()
-  timeLeft.value = props.duration
+  timeLeft.value = props.timerSettings.workDuration
 }
 
 onBeforeUnmount(() => {

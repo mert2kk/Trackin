@@ -1,15 +1,15 @@
 <template>
   <div>
-    <TaskInput @addTask="addTask" />
-    <TaskList :tasks="tasks" @selectTask="selectTask" />
-    <PomodoroToggle v-model="mode" />
     
+    <PomodoroToggle v-model="mode" />
     <Timer
       :task="selectedTask"
       :mode="mode"
-      @sessionComplete="saveSession"
     />
-
+    <div>
+    <TaskInput @addTask="addTask" />
+    <TaskList :tasks="tasks" @selectTask="selectTask" />
+  </div>
 
   </div>
 </template>
@@ -26,6 +26,7 @@ import type { Task } from '~/types/tasks'
 
 const mode = ref<TimerMode>('manual')
 
+
 const selectedTask = ref<Task>({ id: '', title: '', createdAt: '' })
 const tasks = ref<Task[]>([])
 
@@ -39,8 +40,5 @@ function selectTask(task: Task) {
   selectedTask.value = task
 }
 
-function saveSession(sessionData: TimerSession) {
-  // TODO: backend ya da localstorage'a kaydet
-  console.log('Session saved:', sessionData)
-}
+
 </script>

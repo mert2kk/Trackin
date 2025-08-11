@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div><TimerCircle  :duration="120"/></div>
+    <div><TimerCircle  :timerSettings="props.mode === 'manual' ? timerSettings : pomodoroSettings"
+/></div>
     <div>    
       <SettingsModal
       v-model:show="showSettings"
@@ -13,13 +14,6 @@
 import type { Task } from '~/types/tasks';
 
 import type { TimerState,TimerSettings, TimerMode } from '~/types/timer'
-
-let timerSettings = {
-    workDuration: 25 * 60,
-    shortBreakDuration: 5 * 60,
-    longBreakDuration: 15 * 60,
-    workSets: 4,
-  }
 
 const timerState = ref<TimerState>({
     duration: 0,
@@ -35,6 +29,22 @@ const props = defineProps<{
   task: Task
   mode: TimerMode
 }>()
+
+const pomodoroSettings = {
+  workDuration: 25 * 60,
+  shortBreakDuration: 5 * 60,
+  longBreakDuration: 15 * 60,
+  workSets: 4,
+}
+
+const timerSettings= defineModel<TimerSettings>({
+  default: {
+    workDuration: 20 * 60,
+    shortBreakDuration: 5 * 60,
+    longBreakDuration: 15 * 60,
+    workSets: 1,
+  },
+})
 
 const showSettings = ref(props.mode !== 'pomodoro')
 
