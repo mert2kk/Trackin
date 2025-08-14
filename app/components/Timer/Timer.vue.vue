@@ -96,7 +96,7 @@ function nextSession() {
   pause() // Pause the timer before switching sessions
 
   
-  const audio = new Audio('/sounds/ding.mp3')
+  const audio = new Audio('/sounds/CompletedSound.mp3')
   audio.play().catch(() => {
     alert('Zil sesi oynatılamadı — kullanıcı etkileşimi gerekebilir')
   })
