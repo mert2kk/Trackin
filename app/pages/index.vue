@@ -5,6 +5,7 @@
     <Timer
       :task="selectedTask"
       :mode="mode"
+      :key="mode"
     />
     <div>
     <TaskInput @addTask="addTask" />
