@@ -18,92 +18,42 @@
         stroke-width="7"
         fill="none"
         stroke-dasharray="283"
-        :stroke-dashoffset="(timeLeft / props.timerSettings.workDuration) * 283"
+        :stroke-dashoffset="(timerState.remaining / props.timerSettings.workDuration) * 283"
         stroke-linecap="round"
         transform="rotate(-90 50 50)"
       />
     </svg>
-
+    <div class="flex justify-center mt-2">{{ timerState.currentSessionType }}</div>
+    <div class="flex justify-center mt-2">{{ timerState.workSetsRemaining }}</div>
     <!-- Time Label -->
     <div class="absolute inset-0 flex items-center justify-center text-4xl font-mono">
       {{ timeLabel }}
     </div>
 
-    <!-- Control Buttons -->
-    <div class="absolute -bottom-20 left-1/2 transform -translate-x-1/2 flex gap-4">
-      <button
-        class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 disabled:opacity-50"
-        @click="start"
-        :disabled="isRunning"
-      >
-        Start
-      </button>
-
-      <button
-        class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 disabled:opacity-50"
-        @click="pause"
-        :disabled="!isRunning"
-      >
-        Pause
-      </button>
-
-      <button
-        class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500"
-        @click="reset"
-      >
-        Reset
-      </button>
-    </div>
+   
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onBeforeUnmount } from 'vue'
-import type { TimerSettings } from '~/types/timer'
+import {  computed } from 'vue'
+import type { TimerSettings, TimerState } from '~/types/timer'
 
 const props = defineProps<{
   timerSettings: TimerSettings
+  timerState: TimerState
 }>()
 
-// Reactive state
-const timeLeft = ref(props.timerSettings.workDuration)
-const isRunning = ref(false)
-let interval: any| null = null
+
 
 // Computed time label
 const timeLabel = computed(() => {
-  const minutes = Math.floor(timeLeft.value / 60)
-  const seconds = timeLeft.value % 60
+  
+  const minutes = Math.floor(props.timerState.remaining / 60)
+  const seconds = props.timerState.remaining % 60
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
 })
 
-// Methods
-function start() {
-  if (interval || isRunning.value) return
-  isRunning.value = true
-  interval = setInterval(() => {
-    if (timeLeft.value > 0) {
-      timeLeft.value--
-    } else {
-      pause()
-    }
-  }, 1000)
-}
 
-function pause() {
-  isRunning.value = false
-  clearInterval(interval)
-  interval = null
-}
-
-function reset() {
-  pause()
-  timeLeft.value = props.timerSettings.workDuration
-}
-
-onBeforeUnmount(() => {
-  pause()
-})
 </script>
 
 <style scoped>

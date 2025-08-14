@@ -1,14 +1,13 @@
 export type TimerMode = 'manual' | 'pomodoro'
-export type SessionType = 'work' | 'break'
+export type SessionType = 'work' | 'shortBreak' | 'longBreak'
 
 
 export interface TimerState {
-    duration: number
     remaining: number
     isRunning: boolean
     isPaused: boolean
     currentSessionType: SessionType
-    workSetsCompleted: number
+    workSetsRemaining: number
     currentTaskId: string | null
 }
 

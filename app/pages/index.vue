@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="relative flex flex-col items-center justify-center h-full">
     
-    <PomodoroToggle v-model="mode" />
+    <PomodoroToggle v-model="mode" class="flex mb-2" />
     <Timer
       :task="selectedTask"
       :mode="mode"
