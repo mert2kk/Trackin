@@ -3,29 +3,33 @@
     <div>
       <TimerCircle  :timerSettings="activeSettings" v-model:timerState="timerState"/>
     </div>
-        <div class="flex gap-4 justify-center">
-      <button
-        class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 disabled:opacity-50"
-        @click="start"
-        :disabled="timerState.isRunning"
-      >
-        Start
-      </button>
-      <button
-        class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 disabled:opacity-50"
-        @click="pause"
-        :disabled="!timerState.isRunning"
-      >
-        Pause
-      </button>
+        <div class="flex gap-4 justify-center items-center">
+    <!-- Start / Pause toggle -->
+    <button
+      v-if="!timerState.isRunning"
+      @click="start"
+      class="px-4 py-2 rounded-xl flex items-center gap-2"
+      :class="mode==='pomodoro' ? 'bg-[#CC3600] hover:bg-red-600 text-white' : 'bg-[#1e6e89] hover:bg-[#3b93b0] text-white'"
+    >
+      <PlayIcon class="w-5 h-5" />
+    </button>
 
-      <button
-        class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500"
-        @click="reset"
-      >
-        Reset
-      </button>
-    </div>
+    <button
+      v-else
+      @click="pause"
+      class="px-4 py-2 rounded-xl flex items-center gap-2"
+      :class="mode==='pomodoro' ? 'bg-[#CC3600] hover:bg-red-600 text-white' : 'bg-[#1e6e89] hover:bg-[#3b93b0] text-white'"
+    >
+      <PauseIcon class="w-5 h-5" />
+    </button>
+
+    <button
+      @click="reset"
+      class="px-4 py-2 rounded-xl flex items-center gap-2 bg-gray-400 hover:bg-gray-500 text-white"
+    >
+      <ArrowPathIcon class="w-5 h-5" />
+    </button>
+  </div>
     <div class="flex justify-center mt-4 h-4">    
       <SettingsModal
       v-if="mode === 'manual'"
@@ -38,7 +42,9 @@
 
 <script lang="ts" setup>
 import type { Task } from '~/types/tasks';
-import type { TimerState,TimerSettings, TimerMode } from '~/types/timer'
+import type { TimerState, TimerSettings, TimerMode } from '~/types/timer'
+import { PlayIcon, PauseIcon, ArrowPathIcon } from "@heroicons/vue/24/solid"
+
 
 let interval: any| null = null
 

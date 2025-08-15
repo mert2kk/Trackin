@@ -3,7 +3,7 @@
     <div
       @click="toggleMode"
       class="relative w-48 h-8 flex items-center  rounded-full cursor-pointer select-none transition-all"
-      :class="mode === 'manual' ? 'bg-[#707070] ' : 'bg-[#CC3600] '"
+      :class="mode === 'manual' ? 'bg-[#1e6e89] ' : 'bg-[#CC3600] '"
     >
       <!-- Slider circle -->
       <div
@@ -18,7 +18,7 @@
       </div>
 
       <!-- Labels -->
-      <div class="flex w-full justify-center text-xs font-semibold text-white space-x-4">
+      <div class="flex w-full justify-center text-xs font-semibold text-white space-x-4 pl-2">
         <div :class="mode === 'manual' ? 'text-[#EBEBEB] flex justify-center' : 'opacity-30 '">Manual</div>
         <div :class="mode === 'pomodoro' ? 'text-[#EBEBEB] flex ' : 'opacity-30 '">Pomodoro</div>
       </div>
