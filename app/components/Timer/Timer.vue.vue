@@ -1,7 +1,14 @@
 <template>
   <div>
     <div>
-      <TimerCircle  :timerSettings="activeSettings" v-model:timerState="timerState"/>
+      <div class="flex justify-evenly">
+        <button @click="timerReset" class=' text-black font-bold hover:bg-gray-300 rounded-xl px-2 py-1'>
+            <ArrowPathIcon class="w-5 h-5" />
+        </button>
+      </div>
+
+      <TimerCircle  :timerSettings="activeSettings" v-model:timerState="timerState" :mode="mode"/>
+      
     </div>
         <div class="flex gap-4 justify-center items-center">
     <!-- Start / Pause toggle -->
@@ -24,10 +31,10 @@
     </button>
 
     <button
-      @click="reset"
+      @click="sessionReset"
       class="px-4 py-2 rounded-xl flex items-center gap-2 bg-gray-400 hover:bg-gray-500 text-white"
     >
-      <ArrowPathIcon class="w-5 h-5" />
+      <ArrowUturnLeftIcon class="w-5 h-5" />
     </button>
   </div>
     <div class="flex justify-center mt-4 h-4">    
@@ -43,7 +50,7 @@
 <script lang="ts" setup>
 import type { Task } from '~/types/tasks';
 import type { TimerState, TimerSettings, TimerMode } from '~/types/timer'
-import { PlayIcon, PauseIcon, ArrowPathIcon } from "@heroicons/vue/24/solid"
+import { PlayIcon, PauseIcon, ArrowPathIcon ,ArrowUturnLeftIcon} from "@heroicons/vue/24/solid"
 
 
 let interval: any| null = null
@@ -124,7 +131,7 @@ function nextSession() {
 
   } else if (timerState.value.currentSessionType === 'longBreak') {
     alert('Tüm setler ve uzun mola tamamlandı')
-    reset()
+    timerReset()
   }
   //start()
   //Otomatik start 
@@ -137,10 +144,36 @@ function pause() {
   interval = null
 }
 
-function reset() {
+function sessionReset() {
+  pause() 
+
+  if (props.mode === 'manual') {
+    // Manual 
+    if (timerState.value.currentSessionType === 'work') {
+      timerState.value.remaining = timerSettings.value.workDuration
+    } else if (timerState.value.currentSessionType === 'shortBreak') {
+      timerState.value.remaining = timerSettings.value.shortBreakDuration
+    } else {
+      timerState.value.remaining = timerSettings.value.longBreakDuration
+    }
+  } else {
+    // Pomodoro 
+    if (timerState.value.currentSessionType === 'work') {
+      timerState.value.remaining = pomodoroSettings.workDuration
+    } else if (timerState.value.currentSessionType === 'shortBreak') {
+      timerState.value.remaining = pomodoroSettings.shortBreakDuration
+    } else {
+      timerState.value.remaining = pomodoroSettings.longBreakDuration
+    }
+  }
+  timerState.value.isPaused = true
+  timerState.value.isRunning = false
+}
+
+function timerReset() {
   pause()
-  timerState.value.remaining = timerSettings.value.workDuration
-  timerState.value.workSetsRemaining = timerSettings.value.workSets
+  timerState.value.remaining = props.mode==='manual' ? timerSettings.value.workDuration : pomodoroSettings.workDuration
+  timerState.value.workSetsRemaining = props.mode==='manual' ? timerSettings.value.workSets : pomodoroSettings.workSets
   timerState.value.currentSessionType = 'work'
   timerState.value.isPaused = true
   timerState.value.isRunning = false

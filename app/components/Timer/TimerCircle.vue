@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-72 h-72 mx-auto">
+  <div class="relative w-[480px] h-[480px] mx-auto">
     <!-- Circle Timer SVG -->
     <svg viewBox="0 0 100 100" class="w-full h-full">
       <circle
@@ -7,20 +7,21 @@
         cy="50"
         r="45"
         stroke="gray"
-        stroke-width="7"
+        stroke-width="3"
         fill="none"
       />
       <circle
         cx="50"
         cy="50"
         r="45"
-        stroke="currentColor"
-        stroke-width="7"
+        :stroke='props.mode === "pomodoro" ? "#CC3600" : "#1e6e89"'
+        stroke-width="1.3"
         fill="none"
         stroke-dasharray="283"
         :stroke-dashoffset="(timerState.remaining / props.timerSettings.workDuration) * 283"
         stroke-linecap="round"
         transform="rotate(-90 50 50)"
+        class="curentColor"
       />
     </svg>
     <div class="flex justify-center mt-2 font-semibold">{{ sessionLabel }}</div>
@@ -36,14 +37,13 @@
 
 <script setup lang="ts">
 import {  computed } from 'vue'
-import type { TimerSettings, TimerState } from '~/types/timer'
+import type { TimerMode, TimerSettings, TimerState } from '~/types/timer'
 
 const props = defineProps<{
   timerSettings: TimerSettings
   timerState: TimerState
+  mode: TimerMode
 }>()
-
-
 
 // Computed time label
 const timeLabel = computed(() => {

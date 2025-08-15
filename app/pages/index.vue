@@ -1,5 +1,5 @@
 <template>
-  <div class="relative flex flex-col items-center justify-center h-full bg-[#F5AF00] ">
+  <div class="relative flex flex-col items-center justify-center p-8 bg-[#F5AF00] bg-opacity-80 rounded-xl shadow-lg ">
     
     <PomodoroToggle v-model="mode" class="flex mb-2" />
     <Timer
