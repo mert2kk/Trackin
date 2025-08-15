@@ -2,7 +2,7 @@
   <div>
     <div>
       <div class="flex justify-evenly">
-        <button @click="timerReset" class=' text-black font-bold hover:bg-gray-300 rounded-xl px-2 py-1'>
+        <button @click="timerReset" class=' text-black font-bold hover:bg-[#707070] rounded-xl px-2 py-1'>
             <ArrowPathIcon class="w-5 h-5" />
         </button>
       </div>
@@ -32,7 +32,7 @@
 
     <button
       @click="sessionReset"
-      class="px-4 py-2 rounded-xl flex items-center gap-2 bg-gray-400 hover:bg-gray-500 text-white"
+      class="px-4 py-2 rounded-xl flex items-center gap-2 bg-[#707070] hover:bg-[#9f9f9f] text-white"
     >
       <ArrowUturnLeftIcon class="w-5 h-5" />
     </button>
@@ -43,6 +43,7 @@
       v-model:show="showSettings"   
       v-model:settings="timerSettings"
       />
+      
     </div>
   </div>
 </template>
@@ -50,7 +51,7 @@
 <script lang="ts" setup>
 import type { Task } from '~/types/tasks';
 import type { TimerState, TimerSettings, TimerMode } from '~/types/timer'
-import { PlayIcon, PauseIcon, ArrowPathIcon ,ArrowUturnLeftIcon} from "@heroicons/vue/24/solid"
+import { PlayIcon, PauseIcon, ArrowPathIcon ,ArrowUturnLeftIcon,AdjustmentsVerticalIcon} from "@heroicons/vue/24/solid"
 
 
 let interval: any| null = null

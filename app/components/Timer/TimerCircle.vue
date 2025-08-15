@@ -6,7 +6,7 @@
         cx="50"
         cy="50"
         r="45"
-        stroke="gray"
+        :stroke='"#EBEBEB"'
         stroke-width="3"
         fill="none"
       />
@@ -15,7 +15,7 @@
         cy="50"
         r="45"
         :stroke='props.mode === "pomodoro" ? "#CC3600" : "#1e6e89"'
-        stroke-width="1.3"
+        stroke-width="3"
         fill="none"
         stroke-dasharray="283"
         :stroke-dashoffset="(timerState.remaining / props.timerSettings.workDuration) * 283"
