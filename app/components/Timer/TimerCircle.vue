@@ -23,8 +23,8 @@
         transform="rotate(-90 50 50)"
       />
     </svg>
-    <div class="flex justify-center mt-2">{{ timerState.currentSessionType }}</div>
-    <div class="flex justify-center mt-2">{{ timerState.workSetsRemaining }}</div>
+    <div class="flex justify-center mt-2 font-semibold">{{ sessionLabel }}</div>
+    <div class="flex justify-center mt-2 font-semibold">{{ timerState.workSetsRemaining }}</div>
     <!-- Time Label -->
     <div class="absolute inset-0 flex items-center justify-center text-4xl font-mono">
       {{ timeLabel }}
@@ -53,6 +53,11 @@ const timeLabel = computed(() => {
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
 })
 
+const sessionLabel = computed(() => {
+  return props.timerState.currentSessionType
+    .replace(/([A-Z])/g, " $1")      
+    .replace(/^./, str => str.toUpperCase()) 
+})
 
 </script>
 

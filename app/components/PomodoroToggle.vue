@@ -2,8 +2,8 @@
   <div class="flex items-center justify-center">
     <div
       @click="toggleMode"
-      class="relative w-48 h-8 flex items-center rounded-full cursor-pointer select-none transition-all"
-      :class="mode === 'manual' ? 'bg-gray-300 dark:bg-gray-700' : 'bg-red-400'"
+      class="relative w-48 h-8 flex items-center  rounded-full cursor-pointer select-none transition-all"
+      :class="mode === 'manual' ? 'bg-[#707070] ' : 'bg-[#CC3600] '"
     >
       <!-- Slider circle -->
       <div
@@ -18,9 +18,9 @@
       </div>
 
       <!-- Labels -->
-      <div class="flex justify-between w-full px-4 text-xs font-semibold text-white">
-        <span :class="mode === 'manual' ? 'text-black flex pl-6' : 'opacity-50  flex '">Manual</span>
-        <span :class="mode === 'pomodoro' ? 'text-black flex pr-6' : 'opacity-50 flex'">Pomodoro</span>
+      <div class="flex w-full justify-center text-xs font-semibold text-white space-x-4">
+        <div :class="mode === 'manual' ? 'text-[#EBEBEB] flex justify-center' : 'opacity-30 '">Manual</div>
+        <div :class="mode === 'pomodoro' ? 'text-[#EBEBEB] flex ' : 'opacity-30 '">Pomodoro</div>
       </div>
     </div>
   </div>
