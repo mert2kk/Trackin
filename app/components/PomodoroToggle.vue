@@ -7,7 +7,7 @@
     >
       <!-- Slider circle -->
       <div
-        class="absolute top-1/2 transform -translate-y-1/2 w-6 h-6 bg-white rounded-full shadow-md transition-all"
+        class="absolute top-1/2 transform -translate-y-1/2 w-6 h-6  rounded-full shadow-md transition-all"
         :class="mode === 'manual' ? 'left-1' : 'right-1'"
       >
         <img

@@ -26,7 +26,7 @@
         Reset
       </button>
     </div>
-    <div class="flex justify-center mt-4">    
+    <div class="flex justify-center mt-4 h-4">    
       <SettingsModal
       v-if="mode === 'manual'"
       v-model:show="showSettings"   
