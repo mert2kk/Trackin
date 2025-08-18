@@ -38,7 +38,7 @@
         :class="
           mode === 'pomodoro'
             ? 'bg-[#CC3600] hover:bg-red-600 text-white'
-            : 'bg-[#1E3327] hover:bg-[#2c4b3a] text-white'
+            : 'bg-[#1E3327] hover:bg-[#2c4b3a] text-white '
         "
       >
         <PauseIcon class="w-5 h-5" />
@@ -46,12 +46,16 @@
 
       <button
         @click="sessionReset"
-        class="px-4 py-2 rounded-xl flex items-center gap-2 bg-[#707070] hover:bg-[#9f9f9f] text-white"
+        :class="
+          mode === 'pomodoro'
+            ? 'bg-[#CC3600] hover:bg-red-600 text-white px-4 py-2 rounded-xl flex items-center gap-2'
+            : 'bg-[#1E3327] hover:bg-[#2c4b3a] text-white px-4 py-2 rounded-xl flex items-center gap-2'
+        "
       >
         <ArrowUturnLeftIcon class="w-5 h-5" />
       </button>
     </div>
-    <div class="flex justify-center mt-4 h-4">
+    <div class="flex justify-center my-4 h-4">
       <SettingsModal
         v-if="mode === 'manual'"
         v-model:show="showSettings"

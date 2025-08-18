@@ -2,12 +2,15 @@
   <div class="pa-4 text-center">
     <v-dialog v-model="dialog" max-width="680">
       <template v-slot:activator="{ props: activatorProps }">
-        <div class="flex w-8 h-8">
+        <div
+          class="flex w-8 h-8 hover:bg-[#EBEBEB] rounded-xl justify-center items-center"
+          v-bind="activatorProps"
+        >
           <CogIcon v-bind="activatorProps" />
         </div>
       </template>
 
-      <v-card title=" Timer Settings" class="text-center">
+      <v-card title=" Timer Settings" class="text-center" rounded="lg">
         <v-card-text class="flex">
           <v-row class="pt-8">
             <v-col cols="12" sm="3">

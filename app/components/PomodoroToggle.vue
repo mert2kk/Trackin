@@ -15,7 +15,9 @@
           alt="icon"
           class="w-6 h-6 mx-auto my-auto"
           :class="
-            mode === 'manual' ? 'bg-[#EBEBEB] rounded-full' : 'bg-[#CC3600]'
+            mode === 'manual'
+              ? 'bg-[#EBEBEB] rounded-full p-0.5'
+              : 'bg-[#EBEBEB] rounded-full p-0.5'
           "
         />
       </div>
