@@ -3,7 +3,7 @@
     <div
       @click="toggleMode"
       class="relative w-48 h-8 flex items-center  rounded-full cursor-pointer select-none transition-all"
-      :class="mode === 'manual' ? 'bg-[#1e6e89] ' : 'bg-[#CC3600] '"
+      :class="mode === 'manual' ? 'bg-[#1E3327] ' : 'bg-[#CC3600] '"
     >
       <!-- Slider circle -->
       <div

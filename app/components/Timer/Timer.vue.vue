@@ -16,7 +16,7 @@
       v-if="!timerState.isRunning"
       @click="start"
       class="px-4 py-2 rounded-xl flex items-center gap-2"
-      :class="mode==='pomodoro' ? 'bg-[#CC3600] hover:bg-red-600 text-white' : 'bg-[#1e6e89] hover:bg-[#3b93b0] text-white'"
+      :class="mode==='pomodoro' ? 'bg-[#CC3600] hover:bg-red-600 text-white' : 'bg-[#1E3327] hover:bg-[#233e2f] text-white'"
     >
       <PlayIcon class="w-5 h-5" />
     </button>
@@ -25,7 +25,7 @@
       v-else
       @click="pause"
       class="px-4 py-2 rounded-xl flex items-center gap-2"
-      :class="mode==='pomodoro' ? 'bg-[#CC3600] hover:bg-red-600 text-white' : 'bg-[#1e6e89] hover:bg-[#3b93b0] text-white'"
+      :class="mode==='pomodoro' ? 'bg-[#CC3600] hover:bg-red-600 text-white' : 'bg-[#1E3327] hover:bg-[#2c4b3a] text-white'"
     >
       <PauseIcon class="w-5 h-5" />
     </button>

@@ -14,7 +14,7 @@
         cx="50"
         cy="50"
         r="45"
-        :stroke='props.mode === "pomodoro" ? "#CC3600" : "#1e6e89"'
+        :stroke='props.mode === "pomodoro" ? "#CC3600" : "#1E3327"'
         stroke-width="3"
         fill="none"
         stroke-dasharray="283"
