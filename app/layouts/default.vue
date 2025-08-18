@@ -3,10 +3,10 @@
     <VMain>
       <div class="relative w-screen h-screen overflow-hidden">
         <!-- Video background -->
-        <video 
-          autoplay 
-          muted 
-          loop 
+        <video
+          autoplay
+          muted
+          loop
           playsinline
           class="absolute top-0 left-0 w-full h-full object-cover"
         >
@@ -14,7 +14,9 @@
         </video>
 
         <!-- Content on top of the video -->
-        <div class="relative z-10 flex items-center justify-center w-full h-full">
+        <div
+          class="relative z-10 flex items-center justify-center w-full h-full"
+        >
           <NuxtPage />
         </div>
       </div>
@@ -23,5 +25,5 @@
 </template>
 
 <script setup>
-import { VApp, VMain } from 'vuetify/components'
+import { VApp, VMain } from "vuetify/components";
 </script>

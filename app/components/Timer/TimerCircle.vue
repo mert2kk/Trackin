@@ -6,7 +6,7 @@
         cx="50"
         cy="50"
         r="45"
-        :stroke='"#EBEBEB"'
+        :stroke="'#EBEBEB'"
         stroke-width="3"
         fill="none"
       />
@@ -14,51 +14,53 @@
         cx="50"
         cy="50"
         r="45"
-        :stroke='props.mode === "pomodoro" ? "#CC3600" : "#1E3327"'
+        :stroke="props.mode === 'pomodoro' ? '#CC3600' : '#1E3327'"
         stroke-width="3"
         fill="none"
         stroke-dasharray="283"
-        :stroke-dashoffset="(timerState.remaining / props.timerSettings.workDuration) * 283"
+        :stroke-dashoffset="
+          (timerState.remaining / props.timerSettings.workDuration) * 283
+        "
         stroke-linecap="round"
         transform="rotate(-90 50 50)"
         class="curentColor"
       />
     </svg>
     <div class="flex justify-center mt-2 font-semibold">{{ sessionLabel }}</div>
-    <div class="flex justify-center mt-2 font-semibold">{{ timerState.workSetsRemaining }}</div>
+    <div class="flex justify-center mt-2 font-semibold">
+      {{ timerState.workSetsRemaining }}
+    </div>
     <!-- Time Label -->
-    <div class="absolute inset-0 flex items-center justify-center text-4xl font-mono">
+    <div
+      class="absolute inset-0 flex items-center justify-center text-4xl font-mono"
+    >
       {{ timeLabel }}
     </div>
-
-   
   </div>
 </template>
 
 <script setup lang="ts">
-import {  computed } from 'vue'
-import type { TimerMode, TimerSettings, TimerState } from '~/types/timer'
+import { computed } from "vue";
+import type { TimerMode, TimerSettings, TimerState } from "~/types/timer";
 
 const props = defineProps<{
-  timerSettings: TimerSettings
-  timerState: TimerState
-  mode: TimerMode
-}>()
+  timerSettings: TimerSettings;
+  timerState: TimerState;
+  mode: TimerMode;
+}>();
 
 // Computed time label
 const timeLabel = computed(() => {
-  
-  const minutes = Math.floor(props.timerState.remaining / 60)
-  const seconds = props.timerState.remaining % 60
-  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
-})
+  const minutes = Math.floor(props.timerState.remaining / 60);
+  const seconds = props.timerState.remaining % 60;
+  return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+});
 
 const sessionLabel = computed(() => {
   return props.timerState.currentSessionType
-    .replace(/([A-Z])/g, " $1")      
-    .replace(/^./, str => str.toUpperCase()) 
-})
-
+    .replace(/([A-Z])/g, " $1")
+    .replace(/^./, (str) => str.toUpperCase());
+});
 </script>
 
 <style scoped>
