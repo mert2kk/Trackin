@@ -60,6 +60,7 @@
         v-if="mode === 'manual'"
         v-model:show="showSettings"
         v-model:settings="timerSettings"
+        @setSettings="updateSettings"
       />
     </div>
   </div>
@@ -73,7 +74,6 @@ import {
   PauseIcon,
   ArrowPathIcon,
   ArrowUturnLeftIcon,
-  AdjustmentsVerticalIcon,
 } from "@heroicons/vue/24/solid";
 
 let interval: any | null = null;
@@ -200,6 +200,10 @@ function timerReset() {
   timerState.value.currentSessionType = "work";
   timerState.value.isPaused = true;
   timerState.value.isRunning = false;
+}
+
+function updateSettings() {
+  timerReset();
 }
 
 onBeforeUnmount(() => {

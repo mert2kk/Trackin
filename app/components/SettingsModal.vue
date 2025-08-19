@@ -15,6 +15,7 @@
           <v-row class="pt-8">
             <v-col cols="12" sm="3">
               <v-text-field
+                v-model="timerSettings.workDuration"
                 label=" Work Duration"
                 required
                 type="number"
@@ -27,6 +28,7 @@
 
             <v-col cols="12" sm="3">
               <v-text-field
+                v-model="timerSettings.shortBreakDuration"
                 label="Short Break"
                 type="number"
                 suffix="min"
@@ -38,6 +40,7 @@
 
             <v-col cols="12" sm="3">
               <v-text-field
+                v-model="timerSettings.longBreakDuration"
                 label="Long Break"
                 type="number"
                 suffix="min"
@@ -49,6 +52,7 @@
 
             <v-col cols="12" sm="3">
               <v-text-field
+                v-model="timerSettings.workSets"
                 label="Work Sets"
                 type="number"
                 variant="solo"
@@ -65,7 +69,7 @@
             color="#1E3327"
             text="Set"
             variant="tonal"
-            @click="dialog = false"
+            @click="handleSet"
           ></v-btn>
         </v-card-actions>
       </v-card>
@@ -75,9 +79,28 @@
 
 <script lang="ts" setup>
 import { CogIcon } from "@heroicons/vue/24/solid";
-import { shallowRef } from "vue";
+import { shallowRef, defineEmits } from "vue";
+import type { TimerSettings } from "~/types/timer";
 
 const dialog = shallowRef(false);
+
+const timerSettings = defineModel<TimerSettings>("settings", {
+  default: {
+    workDuration: 25 * 60,
+    shortBreakDuration: 5 * 60,
+    longBreakDuration: 15 * 60,
+    workSets: 1,
+  },
+});
+
+function handleSet() {
+  emit("setSettings");
+  dialog.value = false;
+}
+
+const emit = defineEmits<{
+  (e: "setSettings"): void;
+}>();
 </script>
 
 <style></style>
