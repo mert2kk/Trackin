@@ -95,10 +95,10 @@ const pomodoroSettings = {
 };
 
 const timerSettings = ref<TimerSettings>({
-  workDuration: 0.1 * 60,
-  shortBreakDuration: 0.1 * 60,
-  longBreakDuration: 0.1 * 60,
-  workSets: 2,
+  workDuration: 25 * 60,
+  shortBreakDuration: 5 * 60,
+  longBreakDuration: 15 * 60,
+  workSets: 1,
 });
 
 const timerState = ref<TimerState>({

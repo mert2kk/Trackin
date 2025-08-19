@@ -26,9 +26,9 @@
         class="curentColor"
       />
     </svg>
-    <div class="flex justify-center mt-2 font-semibold">{{ sessionLabel }}</div>
-    <div class="flex justify-center mt-2 font-semibold">
-      {{ timerState.workSetsRemaining }}
+    <div class="flex justify-center mt-2 font-bold">{{ sessionLabel }}</div>
+    <div class="flex justify-center mt-1 font-bold">
+      Sets:{{ timerState.workSetsRemaining }}
     </div>
     <!-- Time Label -->
     <div
