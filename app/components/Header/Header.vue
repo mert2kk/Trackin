@@ -1,8 +1,14 @@
 <template>
   <div
-    class="w-[50%] flex flex-row items-center p-6 bg-[#131b16] bg-opacity-80 rounded-b-full"
+    class="w-[55%] flex flex-row items-center p-6 bg-[#131b16] bg-opacity-80 rounded-b-full"
   >
-    <div class="mx-auto">Logo</div>
+    <div class="mx-auto">
+      <img
+        src="/images/logo.png"
+        alt="logo"
+        class="w-[100px] h-[100px] my-auto absolute top-2 bottom-2"
+      />
+    </div>
     <ul class="flex space-x-4 justify-start w-[40%] mx-auto items-center">
       <li class="text-[#EBEBEB] font-bold text-sm">Timer</li>
       <li class="text-[#EBEBEB] font-bold text-sm">Report</li>
@@ -17,7 +23,7 @@
     </button>
     <v-divider vertical class="mx-4" />
 
-    <div class="mx-auto">
+    <div class="mr-auto">
       <button
         class="text-[#EBEBEB] flex justify-center font-semibold text-xs bg-[#0a120d] px-6 py-2 rounded-xl hover:bg-[#5e6863]"
       >
