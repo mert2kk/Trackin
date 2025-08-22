@@ -14,6 +14,10 @@
         </video>
 
         <!-- Content on top of the video -->
+        <div class="relative z-10 w-full flex justify-center">
+          <Header />
+        </div>
+
         <div
           class="relative z-10 flex items-center justify-center w-full h-full"
         >
@@ -26,4 +30,5 @@
 
 <script setup>
 import { VApp, VMain } from "vuetify/components";
+import Header from "../components/Header/Header.vue";
 </script>
