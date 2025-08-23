@@ -90,21 +90,21 @@ const activeSettings = computed(() =>
 );
 
 const pomodoroSettings = {
-  workDuration: 25 * 60,
-  shortBreakDuration: 5 * 60,
-  longBreakDuration: 15 * 60,
+  workDuration: 25,
+  shortBreakDuration: 5,
+  longBreakDuration: 15,
   workSets: 4,
 };
 
 const timerSettings = ref<TimerSettings>({
-  workDuration: 25 * 60,
-  shortBreakDuration: 5 * 60,
-  longBreakDuration: 15 * 60,
+  workDuration: 25,
+  shortBreakDuration: 5,
+  longBreakDuration: 15,
   workSets: 1,
 });
 
 const timerState = ref<TimerState>({
-  remaining: activeSettings.value.workDuration,
+  remaining: activeSettings.value.workDuration * 60,
   isRunning: false,
   isPaused: true,
   currentSessionType: "work",
@@ -140,14 +140,14 @@ function nextSession() {
 
     if (timerState.value.workSetsRemaining > 0) {
       timerState.value.currentSessionType = "shortBreak";
-      timerState.value.remaining = timerSettings.value.shortBreakDuration;
+      timerState.value.remaining = timerSettings.value.shortBreakDuration * 60;
     } else {
       timerState.value.currentSessionType = "longBreak";
-      timerState.value.remaining = timerSettings.value.longBreakDuration;
+      timerState.value.remaining = timerSettings.value.longBreakDuration * 60;
     }
   } else if (timerState.value.currentSessionType === "shortBreak") {
     timerState.value.currentSessionType = "work";
-    timerState.value.remaining = timerSettings.value.workDuration;
+    timerState.value.remaining = timerSettings.value.workDuration * 60;
   } else if (timerState.value.currentSessionType === "longBreak") {
     alert("Tüm setler ve uzun mola tamamlandı");
     timerReset();
@@ -169,20 +169,20 @@ function sessionReset() {
   if (props.mode === "manual") {
     // Manual
     if (timerState.value.currentSessionType === "work") {
-      timerState.value.remaining = timerSettings.value.workDuration;
+      timerState.value.remaining = timerSettings.value.workDuration * 60;
     } else if (timerState.value.currentSessionType === "shortBreak") {
-      timerState.value.remaining = timerSettings.value.shortBreakDuration;
+      timerState.value.remaining = timerSettings.value.shortBreakDuration * 60;
     } else {
-      timerState.value.remaining = timerSettings.value.longBreakDuration;
+      timerState.value.remaining = timerSettings.value.longBreakDuration * 60;
     }
   } else {
     // Pomodoro
     if (timerState.value.currentSessionType === "work") {
-      timerState.value.remaining = pomodoroSettings.workDuration;
+      timerState.value.remaining = pomodoroSettings.workDuration * 60;
     } else if (timerState.value.currentSessionType === "shortBreak") {
-      timerState.value.remaining = pomodoroSettings.shortBreakDuration;
+      timerState.value.remaining = pomodoroSettings.shortBreakDuration * 60;
     } else {
-      timerState.value.remaining = pomodoroSettings.longBreakDuration;
+      timerState.value.remaining = pomodoroSettings.longBreakDuration * 60;
     }
   }
   timerState.value.isPaused = true;
@@ -193,8 +193,8 @@ function timerReset() {
   pause();
   timerState.value.remaining =
     props.mode === "manual"
-      ? timerSettings.value.workDuration
-      : pomodoroSettings.workDuration;
+      ? timerSettings.value.workDuration * 60
+      : pomodoroSettings.workDuration * 60;
   timerState.value.workSetsRemaining =
     props.mode === "manual"
       ? timerSettings.value.workSets
