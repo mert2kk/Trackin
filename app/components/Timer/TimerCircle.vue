@@ -21,7 +21,7 @@
         fill="none"
         stroke-dasharray="283"
         :stroke-dashoffset="
-          (timerState.remaining / props.timerSettings.workDuration) * 283
+          (timerState.remaining / currentSessionDuration) * 283
         "
         stroke-linecap="round"
         transform="rotate(-90 50 50)"
@@ -50,6 +50,15 @@ const props = defineProps<{
   timerState: TimerState;
   mode: TimerMode;
 }>();
+
+//timer settings is props and not reactive
+const currentSessionDuration = computed(() => {
+  if (props.timerState.currentSessionType === "work")
+    return props.timerSettings.workDuration * 60;
+  if (props.timerState.currentSessionType === "shortBreak")
+    return props.timerSettings.shortBreakDuration * 60;
+  return props.timerSettings.longBreakDuration * 60;
+});
 
 // Computed time label
 const timeLabel = computed(() => {
