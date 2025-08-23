@@ -1,5 +1,7 @@
 <template>
-  <div class="relative w-[480px] h-[480px] mx-auto">
+  <div
+    class="relative aspect-square w-[480px] mx-auto Small:w-[360px] xSmall:w-[300px] xxSmall:w-[220px] md:w-[600px] lg:w-[720px] xl:w-[900px]"
+  >
     <!-- Circle Timer SVG -->
     <svg viewBox="0 0 100 100" class="w-full h-full">
       <circle

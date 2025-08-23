@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex flex-col items-center">
     <div>
       <div class="flex justify-evenly">
         <button
@@ -16,52 +16,54 @@
         :mode="mode"
       />
     </div>
-    <div class="flex gap-4 justify-center items-center">
-      <!-- Start / Pause toggle -->
-      <button
-        v-if="!timerState.isRunning"
-        @click="start"
-        class="px-4 py-2 rounded-xl flex items-center gap-2"
-        :class="
-          mode === 'pomodoro'
-            ? 'bg-[#CC3600] hover:bg-red-600 text-white'
-            : 'bg-[#1E3327] hover:bg-[#233e2f] text-white'
-        "
-      >
-        <PlayIcon class="w-5 h-5" />
-      </button>
+    <div class="flex flex-col items-center">
+      <div class="flex gap-4 justify-center items-center">
+        <!-- Start / Pause toggle -->
+        <button
+          v-if="!timerState.isRunning"
+          @click="start"
+          class="px-4 py-2 rounded-xl flex items-center gap-2"
+          :class="
+            mode === 'pomodoro'
+              ? 'bg-[#CC3600] hover:bg-red-600 text-white'
+              : 'bg-[#1E3327] hover:bg-[#233e2f] text-white'
+          "
+        >
+          <PlayIcon class="w-5 h-5" />
+        </button>
 
-      <button
-        v-else
-        @click="pause"
-        class="px-4 py-2 rounded-xl flex items-center gap-2"
-        :class="
-          mode === 'pomodoro'
-            ? 'bg-[#CC3600] hover:bg-red-600 text-white'
-            : 'bg-[#1E3327] hover:bg-[#2c4b3a] text-white '
-        "
-      >
-        <PauseIcon class="w-5 h-5" />
-      </button>
+        <button
+          v-else
+          @click="pause"
+          class="px-4 py-2 rounded-xl flex items-center gap-2"
+          :class="
+            mode === 'pomodoro'
+              ? 'bg-[#CC3600] hover:bg-red-600 text-white'
+              : 'bg-[#1E3327] hover:bg-[#2c4b3a] text-white '
+          "
+        >
+          <PauseIcon class="w-5 h-5" />
+        </button>
 
-      <button
-        @click="sessionReset"
-        :class="
-          mode === 'pomodoro'
-            ? 'bg-[#CC3600] hover:bg-red-600 text-white px-4 py-2 rounded-xl flex items-center gap-2'
-            : 'bg-[#1E3327] hover:bg-[#2c4b3a] text-white px-4 py-2 rounded-xl flex items-center gap-2'
-        "
-      >
-        <ArrowUturnLeftIcon class="w-5 h-5" />
-      </button>
-    </div>
-    <div class="flex justify-center my-4 h-4">
-      <SettingsModal
-        v-if="mode === 'manual'"
-        v-model:show="showSettings"
-        v-model:settings="timerSettings"
-        @setSettings="updateSettings"
-      />
+        <button
+          @click="sessionReset"
+          :class="
+            mode === 'pomodoro'
+              ? 'bg-[#CC3600] hover:bg-red-600 text-white px-4 py-2 rounded-xl flex items-center gap-2'
+              : 'bg-[#1E3327] hover:bg-[#2c4b3a] text-white px-4 py-2 rounded-xl flex items-center gap-2'
+          "
+        >
+          <ArrowUturnLeftIcon class="w-5 h-5" />
+        </button>
+      </div>
+      <div class="flex justify-center my-4 h-4">
+        <SettingsModal
+          v-if="mode === 'manual'"
+          v-model:show="showSettings"
+          v-model:settings="timerSettings"
+          @setSettings="updateSettings"
+        />
+      </div>
     </div>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <VApp>
     <VMain>
-      <div class="relative w-screen h-screen overflow-hidden">
+      <div class="relative w-screen h-screen overflow-hidden flex flex-col">
         <!-- Video background -->
         <video
           autoplay
@@ -18,9 +18,7 @@
           <Header />
         </div>
 
-        <div
-          class="relative z-10 flex items-center justify-center w-full h-full"
-        >
+        <div class="z-10 flex items-center justify-center w-full h-full">
           <NuxtPage />
         </div>
       </div>
