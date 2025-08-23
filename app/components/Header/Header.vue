@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-[900px] flex flex-row items-center bg-[#131b16] bg-opacity-80 rounded-b-full"
+    class="w-[900px] flex flex-row items-center bg-[#131b16] bg-opacity-80 rounded-b-full xSmall:flex-col"
   >
     <div class="mx-auto">
       <img src="/images/logo.png" alt="logo" class="w-[90px] h-[90px]" />
