@@ -22,12 +22,26 @@
           Join & Boost Your Productivity
         </div>
         <div class="text-center text-sm mb-4 font-semibold">
-          Keep track of your tasks, see your report, and chain your work with an
-          account
+          Keep track of your tasks, see your report, and chain your work
         </div>
       </header>
       <section class="flex flex-col h-[400px] items-center mb-4">
-        <h3 class="font-semibold mb-4">Create Account with Email</h3>
+        <button
+          class="bg-[#EBEBEB] opacity-80 rounded-lg px-4 py-2 hover:scale-105 transition-all font-semibold flex items-center flex-row text-sm"
+        >
+          <img
+            src="/images/google.png"
+            alt="google"
+            class="w-[25px] h-[25px] customSm:w-[15px] customSm:h-[15px] mr-4"
+          />
+          Continue with Google
+        </button>
+
+        <v-divider thickness="1px" opacity="40" class="my-6 w-[250px]">
+          <h3 class="font-semibold">Or</h3>
+        </v-divider>
+
+        <h3 class="font-semibold mb-4">Sign In with Email</h3>
         <div>
           <v-text-field
             label=" Email"
@@ -52,23 +66,14 @@
         <button
           class="bg-[#000000] rounded-xl text-[#EBEBEB] px-6 py-2 font-semibold mt-6"
         >
-          Sign up
+          Sign In
         </button>
-
-        <v-divider thickness="1px" opacity="40" class="my-6 w-[250px]">
-          <h3 class="font-semibold">Or</h3>
-        </v-divider>
-
-        <button
-          class="bg-[#EBEBEB] opacity-80 rounded-lg px-4 py-2 hover:scale-105 transition-all font-semibold flex items-center flex-row text-sm"
-        >
-          <img
-            src="/images/google.png"
-            alt="logo"
-            class="w-[25px] h-[25px] customSm:w-[13px] customSm:h-[13px] mr-4"
-          />
-          Continue with Google
-        </button>
+        <div class="text-sm mt-4 flex items-center gap-2">
+          Don't have an account?
+          <RouterLink to="/signup" class="text-[#000000] font-semibold">
+            Create Account
+          </RouterLink>
+        </div>
       </section>
     </div>
     <footer>

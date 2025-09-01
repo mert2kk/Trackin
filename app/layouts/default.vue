@@ -16,7 +16,7 @@
         <!-- Content on top of the video -->
         <div
           class="relative z-10 w-full flex justify-center"
-          v-if="$route.path !== '/signin'"
+          v-if="$route.path !== '/signin' && $route.path !== '/signup'"
         >
           <Header />
         </div>
