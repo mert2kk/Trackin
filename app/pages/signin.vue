@@ -1,8 +1,81 @@
 <template>
   <div
-    class="relative flex flex-col items-center justify-center p-8 bg-[#F5AF00] bg-opacity-80 rounded-xl shadow-lg"
+    class="relative flex flex-col items-center p-8 bg-[#F5AF00] bg-opacity-80 rounded-xl shadow-lg"
   >
-    Sign In
+    <div class="flex flex-col items-center">
+      <header class="flex flex-col items-center mb-10">
+        <div class="text center font-bold text-lg font-serif">
+          Stay on Track
+        </div>
+
+        <div class="mx-auto">
+          <RouterLink to="/">
+            <img
+              src="/images/logo.png"
+              alt="logo"
+              class="w-[120px] h-[120px] customSm:w-[100px] customSm:h-[1000px]"
+            />
+          </RouterLink>
+        </div>
+
+        <div class="text center font-bold text-lg">
+          Join & Boost Your Productivity
+        </div>
+        <div class="text-center text-sm mb-4 font-semibold">
+          Keep track of your tasks, see your report, and chain your work with an
+          account
+        </div>
+      </header>
+      <section class="flex flex-col h-[400px] items-center mb-4">
+        <h3 class="font-semibold mb-4">Create Account with Email</h3>
+        <div>
+          <v-text-field
+            label=" Email"
+            required
+            type="email"
+            variant="solo"
+            rounded="lg"
+            min-width="300px"
+          ></v-text-field>
+          <v-text-field
+            label=" Password"
+            required
+            type="password"
+            variant="solo"
+            rounded="lg"
+            min-width="300px"
+          ></v-text-field>
+          <div class="text-xs flex justify-end p-[0.5] mr-2 font-semibold">
+            <button>Forgot password?</button>
+          </div>
+        </div>
+        <button
+          class="bg-[#000000] rounded-xl text-[#EBEBEB] px-6 py-2 font-semibold mt-6"
+        >
+          Sign up
+        </button>
+
+        <v-divider thickness="1px" opacity="40" class="my-6 w-[250px]">
+          <h3 class="font-semibold">Or</h3>
+        </v-divider>
+
+        <button
+          class="bg-[#EBEBEB] opacity-80 rounded-lg px-4 py-2 hover:scale-105 transition-all font-semibold flex items-center flex-row text-sm"
+        >
+          <img
+            src="/images/google.png"
+            alt="logo"
+            class="w-[25px] h-[25px] customSm:w-[13px] customSm:h-[13px] mr-4"
+          />
+          Continue with Google
+        </button>
+      </section>
+    </div>
+    <footer>
+      <div class="text-xs mt-4">
+        By signing up, you agree to our Terms & Conditions and Privacy Policy
+      </div>
+    </footer>
   </div>
 </template>
 
