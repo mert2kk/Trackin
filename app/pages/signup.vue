@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col items-center justify-center bg-slate-50 bg-opacity-20 p-8 rounded-3xl"
+    class="flex flex-col items-center justify-center bg-slate-50 bg-opacity-20 p-16 rounded-3xl"
   >
     <div class="mx-auto">
       <RouterLink to="/">

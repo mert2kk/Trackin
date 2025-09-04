@@ -17,7 +17,8 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 
 // Start
-app.listen(PORT, () => {
-    connectDB();
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+const startServer = async () => {
+    await connectDB();
+    app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+};
+startServer();
