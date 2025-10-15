@@ -28,6 +28,7 @@
       <section class="flex flex-col h-[400px] items-center mb-4">
         <button
           class="bg-[#EBEBEB] opacity-80 rounded-lg px-4 py-2 hover:scale-105 transition-all font-semibold flex items-center flex-row text-sm"
+          @click="handleGoogleSignIn"
         >
           <img
             src="/images/google.png"
@@ -84,6 +85,39 @@
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const GOOGLE_CLIENT_ID = useRuntimeConfig().public.googleClientId;
+
+const handleGoogleSignIn = async () => {
+  const google = (window as any).google;
+  if (!google) return alert("Google SDK not loaded");
+
+  console.log("Google SDK loaded", google.accounts.id);
+  google.accounts.id.initialize({
+    client_id: GOOGLE_CLIENT_ID,
+    callback: async (response: Credential) => {
+      console.log("Google response:", response);
+      const tokenId = response.id; // Google idToken
+      console.log("idToken:", tokenId);
+
+      // 3️⃣ Token'i backend'e gönder
+      try {
+        const res = await fetch("http://localhost:8000/api/auth/google", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ tokenId }),
+        });
+
+        const data = await res.json();
+        console.log("Backend response:", data); // { user, token }
+      } catch (err) {
+        console.error(err);
+      }
+    },
+  });
+
+  google.accounts.id.prompt();
+};
+</script>
 
 <style></style>
