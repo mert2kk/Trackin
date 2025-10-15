@@ -8,7 +8,7 @@
         cx="50"
         cy="50"
         r="45"
-        :stroke="'#EBEBEB'"
+        :stroke="'#D3AB9E'"
         stroke-width="3"
         fill="none"
       />
@@ -27,16 +27,21 @@
         transform="rotate(-90 50 50)"
         class="curentColor"
       />
+      <text
+        x="50"
+        y="54"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        font-size="18"
+        font-family="mono, sans-serif"
+        fill="#E7D0C5"
+      >
+        {{ timeLabel }}
+      </text>
     </svg>
     <div class="flex justify-center mt-2 font-bold">{{ sessionLabel }}</div>
     <div class="flex justify-center mt-1 font-bold">
       Sets:{{ timerState.workSetsRemaining }}
-    </div>
-    <!-- Time Label -->
-    <div
-      class="absolute inset-0 flex items-center justify-center text-4xl font-mono"
-    >
-      {{ timeLabel }}
     </div>
   </div>
 </template>
