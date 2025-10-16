@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      googleClientId: "370536410950-fdro0pa0l5lugsob5fme0dur37pig4uc.apps.googleusercontent.com"
+      googleClientId: "370536410950-5v5k9bifbf46u1eaq3d3pk092g21ds72.apps.googleusercontent.com"
     }
   },
   css: [

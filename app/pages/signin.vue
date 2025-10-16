@@ -88,32 +88,40 @@
 <script lang="ts" setup>
 const GOOGLE_CLIENT_ID = useRuntimeConfig().public.googleClientId;
 
-const handleGoogleSignIn = async () => {
-  const google = (window as any).google;
-  if (!google) return alert("Google SDK not loaded");
+const handleCredentialResponse = async (response: any) => {
+  if (!response.credential) {
+    console.error("No credential received from Google");
+    return;
+  }
 
-  console.log("Google SDK loaded", google.accounts.id);
+  const tokenId = response.credential; // Google idToken
+  console.log("idToken:", tokenId);
+  // try {
+  //   const verificationResult = await $fetch("/api/auth/google", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: { tokenId },
+  //   });
+
+  //   console.log("Verification successful:", verificationResult);
+  //   const data = await response.json();
+  //   console.log("Backend response:", data); // { user, token }
+  //   await navigateTo("/");
+  // } catch (err: any) {
+  //   console.error("Authentication Error:", err);
+  // }
+};
+
+const handleGoogleSignIn = () => {
+  const google = (window as any).google;
+  if (!google?.accounts?.id) {
+    alert("Google SDK not loaded yet");
+    return;
+  }
+
   google.accounts.id.initialize({
     client_id: GOOGLE_CLIENT_ID,
-    callback: async (response: Credential) => {
-      console.log("Google response:", response);
-      const tokenId = response.id; // Google idToken
-      console.log("idToken:", tokenId);
-
-      // 3️⃣ Token'i backend'e gönder
-      try {
-        const res = await fetch("http://localhost:8000/api/auth/google", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ tokenId }),
-        });
-
-        const data = await res.json();
-        console.log("Backend response:", data); // { user, token }
-      } catch (err) {
-        console.error(err);
-      }
-    },
+    callback: handleCredentialResponse,
   });
 
   google.accounts.id.prompt();
