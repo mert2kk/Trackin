@@ -96,20 +96,20 @@ const handleCredentialResponse = async (response: any) => {
 
   const tokenId = response.credential; // Google idToken
   console.log("idToken:", tokenId);
-  // try {
-  //   const verificationResult = await $fetch("/api/auth/google", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: { tokenId },
-  //   });
+  try {
+    const verificationResult = await $fetch("/api/auth/google", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: { tokenId },
+    });
 
-  //   console.log("Verification successful:", verificationResult);
-  //   const data = await response.json();
-  //   console.log("Backend response:", data); // { user, token }
-  //   await navigateTo("/");
-  // } catch (err: any) {
-  //   console.error("Authentication Error:", err);
-  // }
+    console.log("Verification successful:", verificationResult);
+    const data = JSON.stringify(verificationResult);
+    console.log("Backend response:", data); // { user, token }
+    await navigateTo("/");
+  } catch (err: any) {
+    console.error("Authentication Error:", err);
+  }
 };
 
 const handleGoogleSignIn = () => {
